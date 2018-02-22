@@ -3,7 +3,8 @@ package jdbc;
 import jdbc.model.Course;
 
 import java.sql.SQLException;
-import java.sql.Date;
+
+import java.time.LocalDate;
 import java.util.List;
 
 public class JdbcTest {
@@ -19,11 +20,11 @@ public class JdbcTest {
     }
 
     public static void main(String[] args) {
-        Course c1 = new Course(1, "44-026", "Altkom - C#", 14, new Date(2018 - 2 - 8));
-        Course c2 = new Course(2, "44-030", "Accenture - .NET", 28, new Date(2018 - 3 - 9));
-        Course c3 = new Course(3, "44-026", "Altkom - PHP", 36, new Date(2018 - 4 - 10));
-        Course c4 = new Course(4, "44-030", "Accenture - C++", 60, new Date(2018 - 5 - 11));
-        Course c5 = new Course(5, "44-030", "Accenture - JAVA", 90, new Date(2018 - 6 - 12));
+        Course c1 = new Course(1, "44-026", "Altkom - C#", 14, LocalDate.of(2018,02,13));
+        Course c2 = new Course(2, "44-030", "Accenture - .NET", 28, LocalDate.of(2018,06,16));
+        Course c3 = new Course(3, "44-026", "Altkom - PHP", 36, LocalDate.of(2018,05,11));
+        Course c4 = new Course(4, "44-030", "Accenture - C++", 60, LocalDate.of(2018,04,23));
+        Course c5 = new Course(5, "44-030", "Accenture - JAVA", 90, LocalDate.of(2018,03,10));
 
 
         DaoImpl dao = new DaoImpl();

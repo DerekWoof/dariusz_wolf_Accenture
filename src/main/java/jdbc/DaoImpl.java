@@ -2,7 +2,6 @@ package jdbc;
 
 import jdbc.dao.Dao;
 import jdbc.model.Course;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,8 +27,8 @@ public class DaoImpl implements Dao {
 
     private void createTable() throws SQLException {
         System.out.println("\n---> TWORZENIE TABELI...");
-        final String SQL_CREATE = "CREATE TABLE swoje("
-                + "id INT NOT NULL,"
+        final String SQL_CREATE = "CREATE TABLE dariuszwolf("
+                + "id INT NOT NULL AUTO_INCREMENT,"
                 + "code VARCHAR(255),"
                 + "name VARCHAR(255),"
                 + "days INT,"
@@ -46,10 +45,10 @@ public class DaoImpl implements Dao {
 
     @Override
     public void saveCourse(Course... courses) throws SQLException {
-        System.out.println("\n---> WSTAWIANIE DANYCH...");
+        System.out.println("\n+++++ WSTAWIANIE DANYCH +++++");
         for (Course c : courses) {
-            String insert = String.format("INSERT INTO swoje VALUES (%d, '%s','%s', '%s', '%s')",
-                    c.getId(),
+            String insert = String.format("INSERT INTO dariuszwolf VALUES (null, '%s','%s', '%d', '%s')",
+//                    c.getId(),
                     c.getCode(),
                     c.getName().toString(),
                     c.getDays(),
@@ -61,15 +60,15 @@ public class DaoImpl implements Dao {
 
     @Override
     public List<Course> getCourse() throws SQLException {
-        System.out.println("\n\n---> ODCZYT DANYCH Z TABELI...");
-        final String SQL_SELECT = "SELECT * FROM swoje";
+        System.out.println("\n\n----- ODCZYT DANYCH Z TABELI -----");
+        final String SQL_SELECT = "SELECT * FROM dariuszwolf";
         List<Course> courses = new ArrayList<>();
 
         try (ResultSet rs = st.executeQuery(SQL_SELECT)) {
 
             ResultSetMetaData rsmd = rs.getMetaData();
             int columns = rsmd.getColumnCount();
-            System.out.printf("Tabela 'swoje' zawiera %d kolumn o nazwach: ", columns);
+            System.out.printf("Tabela 'dariuszwolf' zawiera %d kolumn o nazwach: ", columns);
             for (int i = 1; i <= columns; i++) {
                 System.out.print(rsmd.getColumnName(i) + " ");
             }
@@ -82,7 +81,7 @@ public class DaoImpl implements Dao {
                 c.setCode(rs.getString(2));
                 c.setName(rs.getString(3));
                 c.setDays(rs.getInt(4));
-                c.setDate(rs.getDate(5));
+                c.setDate(rs.getDate(5).toLocalDate());
 
                 courses.add(c);
             }
@@ -91,8 +90,8 @@ public class DaoImpl implements Dao {
     }
 
     private void dropTable() throws SQLException {
-        System.out.println("\n---> USUNIECIE TABELI...");
-        final String SQL_DROP = "DROP TABLE swoje";
+        System.out.println("\nxxxxx USUNIECIE TABELI xxxxx");
+        final String SQL_DROP = "DROP TABLE dariuszwolf";
         st.executeUpdate(SQL_DROP);
     }
 

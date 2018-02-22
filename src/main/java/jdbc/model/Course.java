@@ -1,6 +1,7 @@
 package jdbc.model;
 
-import java.sql.Date;
+
+import java.time.LocalDate;
 
 public class Course {
 
@@ -8,10 +9,9 @@ public class Course {
     private String code; // kod szkolenia
     private String name; // tytuł szkolenia
     private int days; // ilość dni
-    private Date date; // data rozpoczęcia
+    private LocalDate date; // data rozpoczęcia
 
-
-    public Course(int id, String code, String name, int days, Date date) {
+    public Course(int id, String code, String name, int days, LocalDate date) {
         this.id = id;
         this.code = code;
         this.name = name;
@@ -20,6 +20,7 @@ public class Course {
     }
 
     public Course() {
+
     }
 
     public int getId() {
@@ -54,22 +55,22 @@ public class Course {
         this.days = days;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
     @Override
     public String toString() {
-        return "Course{" +
-                "id=" + id +
-                ", code='" + code + '\'' +
-                ", name='" + name + '\'' +
-                ", days=" + days +
-                ", date=" + date +
-                '}';
+        return "Kurs: " +
+                "numer kursu = " + id + "\n" +
+                " kod : " + code + "\n" +
+                " nazwa : " + name + "\n" +
+                " ilość dni : " + days + "\n" +
+                " data : " + date +
+                "\n\n ";
     }
 }
